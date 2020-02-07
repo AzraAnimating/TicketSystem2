@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 public class Ticket extends Command {
 
     public Ticket(){
-        this.name = "ticket";
+        this.name = TicketSystem.runner;
     }
 
     @Override
@@ -25,15 +25,18 @@ public class Ticket extends Command {
                 if (action.equalsIgnoreCase("create")) {
                     StringBuilder ticketName = new StringBuilder();
                     if(event.getArgs().size() > 2){
-                        //Name des Tickets wird gebaut
+                        //Name des Tickets wird gebaut (Mit Unterstrichen als Leerzeichen)
                         for(int i = 1; i < event.getArgs().size(); i++){
                             ticketName.append(event.getArgs().get(i));
-                            ticketName.append("_");
+                            if(i < event.getArgs().size() - 1){
+                                ticketName.append("_");
+                            }
                         }
                     } else {
                         ticketName.append(event.getArgs().get(1));
                     }
                     manager.create(ticketName.toString(), event.getGuild().getCategoryById(TicketSystem.ticketCategoryID), event);
+                    event.getMessage().delete().queue();
                 }
             }
             /**

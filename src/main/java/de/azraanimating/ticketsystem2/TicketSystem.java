@@ -15,12 +15,13 @@ import java.util.Map;
 
 public class TicketSystem {
 
-    private static String token = "NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8";
+    private static String token = "NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8"; //Bot-Token
     public static CommandHandler commandHandler;
-    public static String ticketCategoryID = "608341490359599125";
-    public static String prefix = "!";
-    public static String ticketSupportRoleID = "609088404424097817";
-    public static String hasTicketRoleID = "645081317393956866";
+    public static String ticketCategoryID = "608341490359599125"; //Katrgorie in der die Tickets erstellt werden sollen
+    public static String prefix = "!"; //Command Prefix
+    public static String ticketSupportRoleID = "609088404424097817"; //Rolle der Supporter
+    public static String hasTicketRoleID = "645081317393956866"; //Rolle die das erstellen eines 2. Tickets verhindert
+    public static String runner = "ticket"; //Legt fest welches wort den Command auslößt
 
 
     public static void main(String[] args) throws Exception {

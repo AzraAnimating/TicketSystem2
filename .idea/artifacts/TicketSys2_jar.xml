@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TicketSys2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TicketSys2_jar</output-path>
+    <root id="archive" name="TicketSys2.jar">
+      <element id="module-output" name="TicketSys2" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../CustomPrefixAPI/out/artifacts/CustomPrefixAPI_jar/CustomPrefixAPI.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.21/snakeyaml-1.21.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

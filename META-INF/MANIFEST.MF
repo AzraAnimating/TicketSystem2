@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: 
+Class-Path: CustomPrefixAPI.jar snakeyaml-1.21.jar
+

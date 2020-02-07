@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="CustomPrefixAPI_jar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../CustomPrefixAPI/out/artifacts/CustomPrefixAPI_jar" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../CustomPrefixAPI/out/artifacts/CustomPrefixAPI_jar" recursive="false" />
+  </library>
+</component>

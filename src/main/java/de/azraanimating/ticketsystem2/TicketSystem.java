@@ -21,7 +21,12 @@ public class TicketSystem {
     public static String prefix = "!"; //Command Prefix
     public static String ticketSupportRoleID = "609088404424097817"; //Rolle der Supporter
     public static String hasTicketRoleID = "645081317393956866"; //Rolle die das erstellen eines 2. Tickets verhindert
-    public static String runner = "ticket"; //Legt fest welches wort den Command auslößt
+    public static String runner = "Ticket"; //Legt fest welches wort den Command auslößt
+    public static boolean privateNotify = true; //Legt fest ob alle Träger der Supportrolle Privat angeschrieben werden sollen
+    public static String notifyChannelID = ""; //Legt den Channel in den benachrichtigungen gesendet werden sollen
+    public static boolean notifyWithMention = true;
+    public static String ticketEntry = "Hallo <user> willkommen im support"; //Legt den Text fest, welcher beim erstellen eines Tickets geschrieben wird '<user>' lässt den User erwähnen
+    public static String activationChannelID = "608341490359599126"; //Der Channel in dem der Command akzeptiert wird
 
 
     public static void main(String[] args) throws Exception {

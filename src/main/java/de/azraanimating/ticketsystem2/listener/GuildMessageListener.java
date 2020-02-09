@@ -8,12 +8,12 @@ public class GuildMessageListener extends ListenerAdapter {
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event){
 
-
         /**
          * Command handling
          *
          * Prefix, wird in Config gesetzt
          */
+
         TicketSystem.commandHandler.handle(event, TicketSystem.prefix);
     }
 

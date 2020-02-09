@@ -3,9 +3,14 @@ package de.azraanimating.ticketsystem2.commands;
 import de.azraanimating.customprefixapi.command.Command;
 import de.azraanimating.customprefixapi.command.CommandEvent;
 import de.azraanimating.ticketsystem2.TicketSystem;
+import de.azraanimating.ticketsystem2.notify.ChannelNotifier;
+import de.azraanimating.ticketsystem2.notify.PrivateNotifier;
 import de.azraanimating.ticketsystem2.ticketmanager.Manager;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.TextChannel;
+
+import java.awt.*;
 
 public class Ticket extends Command {
 
@@ -20,9 +25,11 @@ public class Ticket extends Command {
         if(event.getArgs().size() > 0){
             String action = event.getArgs().get(0);
             Manager manager = new Manager();
+            PrivateNotifier privateNotifier = new PrivateNotifier();
+            ChannelNotifier channelNotifier = new ChannelNotifier();
             if(event.getArgs().size() > 1) {
                 //Name des Tickets wird angegeben
-                if (action.equalsIgnoreCase("create")) {
+                if (action.equalsIgnoreCase("create") && event.getChannel().getId().equals(TicketSystem.activationChannelID)) {
                     StringBuilder ticketName = new StringBuilder();
                     if(event.getArgs().size() > 2){
                         //Name des Tickets wird gebaut (Mit Unterstrichen als Leerzeichen)
@@ -35,8 +42,16 @@ public class Ticket extends Command {
                     } else {
                         ticketName.append(event.getArgs().get(1));
                     }
-                    manager.create(ticketName.toString(), event.getGuild().getCategoryById(TicketSystem.ticketCategoryID), event);
+                     manager.create(ticketName.toString(), event.getGuild().getCategoryById(TicketSystem.ticketCategoryID), event);
+                    if(TicketSystem.privateNotify){
+                        privateNotifier.notify(event, ticketName.toString());
+                        channelNotifier.notifyChannel(event, ticketName.toString());
+                    }
                     event.getMessage().delete().queue();
+                }
+            } else {
+                if(!event.getArgs().get(0).equalsIgnoreCase("close")) {
+                    event.reply("Bitte gebe einen Namen für dein Ticket ein ``" + TicketSystem.prefix + TicketSystem.runner + " create 'Name'``");
                 }
             }
             /**
@@ -44,11 +59,17 @@ public class Ticket extends Command {
              */
             if(action.equalsIgnoreCase("close")){
                 if(event.getChannel().getName().startsWith("ticket-")){
-                    if(event.getMember().hasPermission(Permission.MANAGE_CHANNEL)){
-                        if(event.getChannel().getTopic().contains("Ticket Owner: " + event.getMember().getId()) || event.getMember().hasPermission(Permission.ADMINISTRATOR)){
-                            manager.delete(event.getTextChannel(), event);
-                        } else {
-                            event.reply("Da du kein Administrator oder der Besitzer des Tickets bist, kannst du dieses nicht schliessen");
+                    if(event.getMember().hasPermission(Permission.MESSAGE_HISTORY)){
+                        try {
+                            if (event.getChannel().getTopic().contains("Ticket Owner: " + event.getMember().getId()) || event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                                manager.delete(event.getTextChannel(), event);
+                            } else {
+                                event.reply("Da du kein Administrator oder der Besitzer des Tickets bist, kannst du dieses nicht schliessen");
+                            }
+                        } catch (Exception e){
+                            e.printStackTrace();
+                            System.out.println("wdasdasdsasdas");
+                            event.reply("Dies ist kein Ticket welches von mir erstellt wurde");
                         }
                     } else {
                         event.reply("Du bist nicht dazu berechtigt dieses Ticket zu schliessen");
@@ -57,6 +78,13 @@ public class Ticket extends Command {
                     event.reply("Dies ist leider kein Ticket");
                 }
             }
+            if(action.equalsIgnoreCase("help")){
+                event.sendEmbed(new EmbedBuilder()
+                        .setColor(Color.GREEN)
+                        .setTitle("Ticket hilfe")
+                        .addField("Commands", "**" + TicketSystem.runner + " Erstellen**: \n" + "Ein " + TicketSystem.runner + " wird erstellt indem du ``" + TicketSystem.prefix + TicketSystem.runner + " create 'Name'`` ausführst. \n \n**" + TicketSystem.runner + " löschen:** \n Ein " + TicketSystem.runner + " wird gelöscht indem du im Channel des " + TicketSystem.runner + "'s ``" + TicketSystem.prefix + TicketSystem.runner + " close`` ausführst", false));
+            }
+
         }
     }
 }

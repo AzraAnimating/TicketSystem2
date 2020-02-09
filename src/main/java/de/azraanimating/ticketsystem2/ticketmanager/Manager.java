@@ -57,6 +57,10 @@ public class Manager {
             }
 
             event.getGuild().addRoleToMember(event.getMember(), event.getGuild().getRoleById(TicketSystem.hasTicketRoleID)).queue();
+
+            if(!TicketSystem.ticketEntry.equalsIgnoreCase("")){
+                ticketChannel.sendMessage(TicketSystem.ticketEntry.replace("<user>", event.getMember().getAsMention())).queue();
+            }
         }
     }
 
@@ -64,8 +68,10 @@ public class Manager {
         String[] channelInfos = ticketChannel.getName().split("-");
         String userID = channelInfos[2];
         if (event.getMember().getId().equalsIgnoreCase(userID)) {
-            event.getGuild().removeRoleFromMember(event.getMember(), event.getGuild().getRolesByName(event.getChannel().getName().replace("-" + userID, ""), true).get(0)).queue();
+            String userIdPart = "-" + userID;
+            event.getGuild().removeRoleFromMember(event.getMember(), event.getGuild().getRolesByName(event.getChannel().getName().replace(userIdPart, ""), true).get(0)).queue();
             event.getGuild().removeRoleFromMember(event.getMember(), event.getGuild().getRoleById(TicketSystem.hasTicketRoleID)).queue();
+            event.getGuild().getRolesByName(channelInfos[0] + "-" + channelInfos[1], true).get(0).delete().queue();
         }
         ticketChannel.delete().queue();
     }

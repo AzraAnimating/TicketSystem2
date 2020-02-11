@@ -3,20 +3,6 @@ package de.azraanimating.ticketsystem2.yml;
 
 public class Config {
 
-    /**
-     * private static String token = "NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8"; //Bot-Token
-     *     public static String ticketCategoryID = "608341490359599125"; //Katrgorie in der die Tickets erstellt werden sollen
-     *     public static String prefix = "!"; //Command Prefix
-     *     public static String ticketSupportRoleID = "609088404424097817"; //Rolle der Supporter
-     *     public static String hasTicketRoleID = "645081317393956866"; //Rolle die das erstellen eines 2. Tickets verhindert
-     *     public static String runner = "Ticket"; //Legt fest welches wort den Command auslößt
-     *     public static boolean privateNotify = true; //Legt fest ob alle Träger der Supportrolle Privat angeschrieben werden sollen
-     *     public static String notifyChannelID = ""; //Legt den Channel in den benachrichtigungen gesendet werden sollen
-     *     public static boolean notifyWithMention = true;
-     *     public static String ticketEntry = "Hallo <user> willkommen im support"; //Legt den Text fest, welcher beim erstellen eines Tickets geschrieben wird '<user>' lässt den User erwähnen
-     *     public static String activationChannelID = "608341490359599126"; //Der Channel in dem der Command akzeptiert wird
-     */
-
     private static String token; //Bot-Token
     private static String ticketCategoryID; //Katrgorie in der die Tickets erstellt werden sollen
     private static String prefix; //Command Prefix
@@ -28,6 +14,8 @@ public class Config {
     private static boolean notifyWithMention;
     private static String ticketEntry; //Legt den Text fest, welcher beim erstellen eines Tickets geschrieben wird '<user>' lässt den User erwähnen
     private static String activationChannelID; //Der Channel in dem der Command akzeptiert wird
+    private static String activity; //Aktivität
+    private static String saveCategoryID;//Kategorie für backups
 
     public void setToken(String ptoken){
         token = ptoken;
@@ -73,6 +61,14 @@ public class Config {
         activationChannelID = pActivationChannelID;
     }
 
+    public void setActivity(String pActivity){
+        activity = pActivity;
+    }
+
+    public void setSaveCategoryID(String pSaveCategoryID){
+        saveCategoryID = pSaveCategoryID;
+    }
+
     //Get-Methods
     public static String getToken() {
         return token;
@@ -116,5 +112,13 @@ public class Config {
 
     public static String getActivationChannelID() {
         return activationChannelID;
+    }
+
+    public static String getActivity(){
+        return activity;
+    }
+
+    public static String getSaveCategoryID(){
+        return saveCategoryID;
     }
 }

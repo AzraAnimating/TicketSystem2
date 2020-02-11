@@ -1,0 +1,13 @@
+#Config
+---
+token: NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8
+ticketCategoryID: 608341490359599125
+prefix: !
+ticketSupportRoleID: 609088404424097817
+hasTicketRoleID: 645081317393956866
+runner: Ticket
+privateNotify: true
+notifyChannelID:
+notifyWithMention: true
+ticketEntry: Hallo <user> willkommen im support
+activationChannelID: 608341490359599126

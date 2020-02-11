@@ -69,12 +69,12 @@ public class Manager {
         String userID = channelInfos[2];
         if (event.getMember().getId().equalsIgnoreCase(userID)) {
             String userIdPart = "-" + userID;
-            event.getGuild().removeRoleFromMember(event.getMember(), event.getGuild().getRolesByName(event.getChannel().getName().replace(userIdPart, ""), true).get(0)).queue();
-            event.getGuild().removeRoleFromMember(event.getMember(), event.getGuild().getRoleById(TicketSystem.hasTicketRoleID)).queue();
+
+            event.getGuild().removeRoleFromMember(event.getGuild().getMemberById(userID), event.getGuild().getRolesByName(event.getChannel().getName().replace(userIdPart, ""), true).get(0)).queue();
+            event.getGuild().removeRoleFromMember(event.getGuild().getMemberById(userID), event.getGuild().getRoleById(TicketSystem.hasTicketRoleID)).queue();
             event.getGuild().getRolesByName(channelInfos[0] + "-" + channelInfos[1], true).get(0).delete().queue();
         }
         ticketChannel.delete().queue();
     }
-
 
 }

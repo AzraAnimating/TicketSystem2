@@ -1,32 +1,31 @@
 package de.azraanimating.ticketsystem2;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.azraanimating.customprefixapi.command.CommandHandler;
 import de.azraanimating.ticketsystem2.commands.Ticket;
 import de.azraanimating.ticketsystem2.listener.GuildMessageListener;
-import de.azraanimating.ticketsystem2.yml.Interpreter;
-import de.azraanimating.ticketsystem2.yml.Loader;
+import de.azraanimating.ticketsystem2.yml.Config;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.InputStream;
-import java.util.Map;
+import java.io.File;
 
 public class TicketSystem {
 
-    private static String token = "NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8"; //Bot-Token
+
+    private static String token = Config.getToken(); //Bot-Token
     public static CommandHandler commandHandler;
-    public static String ticketCategoryID = "608341490359599125"; //Katrgorie in der die Tickets erstellt werden sollen
-    public static String prefix = "!"; //Command Prefix
-    public static String ticketSupportRoleID = "609088404424097817"; //Rolle der Supporter
-    public static String hasTicketRoleID = "645081317393956866"; //Rolle die das erstellen eines 2. Tickets verhindert
-    public static String runner = "Ticket"; //Legt fest welches wort den Command auslößt
-    public static boolean privateNotify = true; //Legt fest ob alle Träger der Supportrolle Privat angeschrieben werden sollen
-    public static String notifyChannelID = ""; //Legt den Channel in den benachrichtigungen gesendet werden sollen
-    public static boolean notifyWithMention = true;
-    public static String ticketEntry = "Hallo <user> willkommen im support"; //Legt den Text fest, welcher beim erstellen eines Tickets geschrieben wird '<user>' lässt den User erwähnen
-    public static String activationChannelID = "608341490359599126"; //Der Channel in dem der Command akzeptiert wird
+    public static String ticketCategoryID = Config.getTicketCategoryID(); //Katrgorie in der die Tickets erstellt werden sollen
+    public static String prefix = Config.getPrefix(); //Command Prefix
+    public static String ticketSupportRoleID = Config.getTicketSupportRoleID(); //Rolle der Supporter
+    public static String hasTicketRoleID = Config.getHasTicketRoleID(); //Rolle die das erstellen eines 2. Tickets verhindert
+    public static String runner = Config.getRunner(); //Legt fest welches wort den Command auslößt
+    public static boolean privateNotify = Config.isPrivateNotify(); //Legt fest ob alle Träger der Supportrolle Privat angeschrieben werden sollen
+    public static String notifyChannelID = Config.getNotifyChannelID(); //Legt den Channel in den benachrichtigungen gesendet werden sollen
+    public static boolean notifyWithMention = Config.isNotifyWithMention();
+    public static String ticketEntry = Config.getTicketEntry(); //Legt den Text fest, welcher beim erstellen eines Tickets geschrieben wird '<user>' lässt den User erwähnen
+    public static String activationChannelID = Config.getActivationChannelID(); //Der Channel in dem der Command akzeptiert wird
 
 
     public static void main(String[] args) throws Exception {
@@ -34,7 +33,25 @@ public class TicketSystem {
              * Startet den Bot & Initialisiert die Events
              */
 
-            prefix = "!";
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
+        try{
+            Config config = mapper.readValue(new File("config.yml"), Config.class);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        token = Config.getToken(); //Bot-Token
+        ticketCategoryID = Config.getTicketCategoryID(); //Katrgorie in der die Tickets erstellt werden sollen
+        prefix = Config.getPrefix(); //Command Prefix
+        ticketSupportRoleID = Config.getTicketSupportRoleID(); //Rolle der Supporter
+        hasTicketRoleID = Config.getHasTicketRoleID(); //Rolle die das erstellen eines 2. Tickets verhindert
+        runner = Config.getRunner(); //Legt fest welches wort den Command auslößt
+        privateNotify = Config.isPrivateNotify(); //Legt fest ob alle Träger der Supportrolle Privat angeschrieben werden sollen
+        notifyChannelID = Config.getNotifyChannelID(); //Legt den Channel in den benachrichtigungen gesendet werden sollen
+        notifyWithMention = Config.isNotifyWithMention();
+        ticketEntry = Config.getTicketEntry(); //Legt den Text fest, welcher beim erstellen eines Tickets geschrieben wird '<user>' lässt den User erwähnen
+        activationChannelID = Config.getActivationChannelID();
 
             new DefaultShardManagerBuilder()
                     .setToken(token)

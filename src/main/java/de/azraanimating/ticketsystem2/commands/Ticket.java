@@ -50,14 +50,14 @@ public class Ticket extends Command {
                     event.getMessage().delete().queue();
                 }
             } else {
-                if(!event.getArgs().get(0).equalsIgnoreCase("close")) {
+                if(!event.getArgs().get(0).equalsIgnoreCase("close") && !event.getArgs().get(0).equalsIgnoreCase("help") && event.getChannel().getId().equals(TicketSystem.activationChannelID)) {
                     event.reply("Bitte gebe einen Namen für dein Ticket ein ``" + TicketSystem.prefix + TicketSystem.runner + " create 'Name'``");
                 }
             }
             /**
              * Ticket wird sofern die Rechte dazu vorhanden & der Channel ein Ticket ist geschlossen
              */
-            if(action.equalsIgnoreCase("close")){
+            if(action.equalsIgnoreCase("close") && event.getChannel().getName().startsWith("ticket-")){
                 if(event.getChannel().getName().startsWith("ticket-")){
                     if(event.getMember().hasPermission(Permission.MESSAGE_HISTORY)){
                         try {
@@ -67,8 +67,7 @@ public class Ticket extends Command {
                                 event.reply("Da du kein Administrator oder der Besitzer des Tickets bist, kannst du dieses nicht schliessen");
                             }
                         } catch (Exception e){
-                            e.printStackTrace();
-                            System.out.println("wdasdasdsasdas");
+                            //e.printStackTrace();
                             event.reply("Dies ist kein Ticket welches von mir erstellt wurde");
                         }
                     } else {
@@ -78,10 +77,22 @@ public class Ticket extends Command {
                     event.reply("Dies ist leider kein Ticket");
                 }
             }
+
+            /**
+             * Hilfe: Wird anhand der Permissions ausgebgeben, d.H. wen jemand Admin hat, werden Usages usw ausgegeben
+             */
             if(action.equalsIgnoreCase("help")){
+
+                if(event.getMember().getRoles().contains(TicketSystem.ticketSupportRoleID)){
+                    event.sendEmbed(new EmbedBuilder()
+                    .setColor(Color.CYAN)
+                    .setTitle("Administrator - Hilfe")
+                    .addField("Verwaltungscommands", "Jeder Supporter kann ein Ticket forceclosen, das heisst, dass ein Supporter ohne Zustimmung des Ticketautors das Ticket schliessen kann", false));
+                }
+
                 event.sendEmbed(new EmbedBuilder()
                         .setColor(Color.GREEN)
-                        .setTitle("Ticket hilfe")
+                        .setTitle(TicketSystem.runner + " Hilfe")
                         .addField("Commands", "**" + TicketSystem.runner + " Erstellen**: \n" + "Ein " + TicketSystem.runner + " wird erstellt indem du ``" + TicketSystem.prefix + TicketSystem.runner + " create 'Name'`` ausführst. \n \n**" + TicketSystem.runner + " löschen:** \n Ein " + TicketSystem.runner + " wird gelöscht indem du im Channel des " + TicketSystem.runner + "'s ``" + TicketSystem.prefix + TicketSystem.runner + " close`` ausführst", false));
             }
 

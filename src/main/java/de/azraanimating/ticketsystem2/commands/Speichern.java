@@ -8,10 +8,8 @@ import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageHistory;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.internal.requests.Route;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;

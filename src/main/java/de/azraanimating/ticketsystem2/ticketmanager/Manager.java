@@ -7,8 +7,6 @@ import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 
-import java.util.Arrays;
-
 public class Manager {
 
     public void create(String name, Category category, CommandEvent event) {

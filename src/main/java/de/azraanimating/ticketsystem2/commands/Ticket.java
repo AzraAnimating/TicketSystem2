@@ -8,7 +8,6 @@ import de.azraanimating.ticketsystem2.notify.PrivateNotifier;
 import de.azraanimating.ticketsystem2.ticketmanager.Manager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.awt.*;
 
@@ -43,11 +42,15 @@ public class Ticket extends Command {
                             } else {
                                 ticketName.append(event.getArgs().get(1));
                             }
-                            manager.create(ticketName.toString(), event.getGuild().getCategoryById(TicketSystem.ticketCategoryID), event);
-                            if (TicketSystem.privateNotify) {
-                                privateNotifier.notify(event, ticketName.toString());
-                                channelNotifier.notifyChannel(event, ticketName.toString());
+                            if(!event.getMember().getRoles().contains(event.getGuild().getRoleById(TicketSystem.hasTicketRoleID))) {
+                                if (TicketSystem.privateNotify) {
+                                    privateNotifier.notify(event, ticketName.toString());
+                                    channelNotifier.notifyChannel(event, ticketName.toString());
+                                } else {
+                                    event.reply("Du kannst maximal **ein** Ticket erstellen");
+                                }
                             }
+                            manager.create(ticketName.toString().replace("-", "_"), event.getGuild().getCategoryById(TicketSystem.ticketCategoryID), event);
                             event.getMessage().delete().queue();
                         } else {
                             event.getMessage().delete().queue();

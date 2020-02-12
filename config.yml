@@ -1,4 +1,4 @@
-#Config
+#Config für Verkehrs_Zeichen - TicketSystem
 ---
 token: NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8
 ticketCategoryID: 608341490359599125
@@ -13,3 +13,5 @@ ticketEntry: "Hallo <user> willkommen im support"
 activationChannelID: 608341490359599126
 activity: "Testing"
 saveCategoryID: 676830128612835376
+rankID: 645081317393956866
+requiredRankID: 609088404424097817

@@ -3,6 +3,7 @@ package de.azraanimating.ticketsystem2;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.azraanimating.customprefixapi.command.CommandHandler;
+import de.azraanimating.ticketsystem2.commands.Rang;
 import de.azraanimating.ticketsystem2.commands.Speichern;
 import de.azraanimating.ticketsystem2.commands.Ticket;
 import de.azraanimating.ticketsystem2.listener.GuildMessageListener;
@@ -76,5 +77,107 @@ public class TicketSystem {
 
             commandHandler.addCommand(new Ticket());
             commandHandler.addCommand(new Speichern());
+            commandHandler.addCommand(new Rang());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Jaja ich weiss, Static nich so geil. aber für 5€, Was erwartet man ala

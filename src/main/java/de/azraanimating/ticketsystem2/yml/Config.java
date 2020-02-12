@@ -16,6 +16,8 @@ public class Config {
     private static String activationChannelID; //Der Channel in dem der Command akzeptiert wird
     private static String activity; //Aktivität
     private static String saveCategoryID;//Kategorie für backups
+    private static String rankID;
+    private static String requiredRankID;
 
     public void setToken(String ptoken){
         token = ptoken;
@@ -69,6 +71,14 @@ public class Config {
         saveCategoryID = pSaveCategoryID;
     }
 
+    public void setRankID(String pRankID){
+        rankID = pRankID;
+    }
+
+    public void setRequiredRankID(String pRequiredRankID){
+        requiredRankID = pRequiredRankID;
+    }
+
     //Get-Methods
     public static String getToken() {
         return token;
@@ -120,5 +130,13 @@ public class Config {
 
     public static String getSaveCategoryID(){
         return saveCategoryID;
+    }
+
+    public static String getRankID(){
+        return rankID;
+    }
+
+    public static String getRequiredRankID() {
+        return requiredRankID;
     }
 }

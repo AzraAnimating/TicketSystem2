@@ -2,6 +2,7 @@ package de.azraanimating.ticketsystem2.ticketmanager;
 
 import de.azraanimating.customprefixapi.command.CommandEvent;
 import de.azraanimating.ticketsystem2.TicketSystem;
+import de.azraanimating.ticketsystem2.notify.ChannelNotifier;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Role;

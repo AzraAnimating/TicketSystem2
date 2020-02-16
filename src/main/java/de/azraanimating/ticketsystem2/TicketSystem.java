@@ -10,8 +10,12 @@ import de.azraanimating.ticketsystem2.listener.GuildMessageListener;
 import de.azraanimating.ticketsystem2.yml.Config;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TicketSystem {
 
@@ -41,7 +45,49 @@ public class TicketSystem {
         try{
             Config config = mapper.readValue(new File("config.yml"), Config.class);
         } catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Bitte starte den Bot nach der Konfiguration neu.");
+            Map<String, String> rawConfig = new HashMap<>();
+
+            rawConfig.put("token:", "");
+            rawConfig.put("ticketCategoryID:", "");
+            rawConfig.put("prefix:", "'!'");
+            rawConfig.put("ticketSupportRoleID:", "");
+            rawConfig.put("hasTicketRoleID:", "");
+            rawConfig.put("runner:", "Ticket");
+            rawConfig.put("privateNotify:", "true");
+            rawConfig.put("notifyChannelID:", "");
+            rawConfig.put("notifyWithMention:", "false");
+            rawConfig.put("ticketEntry:", "'Hallo <user> willkommen im support'");
+            rawConfig.put("activationChannelID:", "");
+            rawConfig.put("activity:", "\"Testing\"");
+            rawConfig.put("saveCategoryID", "");
+            rawConfig.put("rankID:", "");
+            rawConfig.put("requiredRankID:", "");
+
+            Yaml yaml = new Yaml();
+            FileWriter fileWriter = new FileWriter("config.yml");
+            //yaml.dump(rawConfig, fileWriter);
+
+            fileWriter.append("token:\n")
+                    .append("ticketCategoryID:\n")
+                    .append("prefix: '!'\n")
+                    .append("ticketSupportRoleID:\n")
+                    .append("hasTicketRoleID:\n")
+                    .append("runner: 'Ticket'\n")
+                    .append("privateNotify: true\n")
+                    .append("notifyChannelID:\n")
+                    .append("notifyWithMention: false\n")
+                    .append("ticketEntry: 'Hallo <user> willkommen im support'\n")
+                    .append("activationChannelID:\n")
+                    .append("activity: 'Testing'\n")
+                    .append("saveCategoryID:\n")
+                    .append("rankID:\n")
+                    .append("requiredRankID:\n");
+
+            fileWriter.flush();
+            fileWriter.close();
+
+            return;
         }
 
         token = Config.getToken(); //Bot-Token

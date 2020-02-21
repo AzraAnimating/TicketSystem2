@@ -1,17 +1,17 @@
 #Config für Verkehrs_Zeichen - TicketSystem
 ---
-token: NjI4NjU3MDc3MDMxNjY1Njcz.Xj14_g.f80dk2n0j4zKNzW05GZWXqKBqq8
-ticketCategoryID: 608341490359599125
-prefix: "!"
-ticketSupportRoleID: 609088404424097817
-hasTicketRoleID: 645081317393956866
-runner: "Ticket"
+token: NjI4NjU3MDc3MDMxNjY1Njcz.XlAfzQ.HqB3mpN4jepf3nDuRtjLTaICemM
+ticketCategoryID: 680479698136203279
+prefix: '!'
+ticketSupportRoleID: 629027011804790799
+hasTicketRoleID: 629016158481285170
+runner: 'Ticket'
 privateNotify: true
 notifyChannelID:
-notifyWithMention: true
-ticketEntry: "Hallo <user> willkommen im support"
-activationChannelID: 608341490359599126
-activity: "Testing"
-saveCategoryID: 676830128612835376
-rankID: 645081317393956866
-requiredRankID: 609088404424097817
+notifyWithMention: false
+ticketEntry: 'Hallo <user> willkommen im support'
+activationChannelID: 680479724434358291
+activity: 'mit Tickets'
+saveCategoryID: 680479811432743011
+rankID: 674378500831969320
+requiredRankID: 674274653509779466

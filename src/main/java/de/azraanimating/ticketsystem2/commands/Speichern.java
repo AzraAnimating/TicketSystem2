@@ -25,6 +25,8 @@ public class Speichern extends Command {
     @Override
     protected void excecute(CommandEvent event) {
         if(event.getChannel().getName().startsWith("ticket-") && event.getMember().getRoles().contains(event.getGuild().getRoleById(TicketSystem.ticketSupportRoleID))){
+            event.getMessage().delete().queue();
+
             Category saveCategory = event.getGuild().getCategoryById(TicketSystem.saveCategoryID);
 
             TextChannel savedChannel = saveCategory.createTextChannel(event.getChannel().getName()).complete();

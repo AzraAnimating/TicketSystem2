@@ -1,6 +1,6 @@
 #Config für Verkehrs_Zeichen - TicketSystem
 ---
-token: NjI4NjU3MDc3MDMxNjY1Njcz.XlAfzQ.HqB3mpN4jepf3nDuRtjLTaICemM
+token: ########
 ticketCategoryID: 680479698136203279
 prefix: '!'
 ticketSupportRoleID: 629027011804790799
